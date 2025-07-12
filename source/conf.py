@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'ProjectOne'
+project = 'Kraken Wallet'
 copyright = '2025, Author'
 author = 'Author'
 
@@ -27,3 +27,13 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 
+
+# -- Bing Webmaster Tools Verification Meta Tag ------------------------------
+
+def add_bing_meta(app, pagename, templatename, context, doctree):
+    context['metatags'] = context.get('metatags', '') + \
+        '<meta name="msvalidate.01" content="95C87535A9749D8626C4EC71D2A93060" />\n'
+
+def setup(app):
+    app.add_config_value('meta_tags', '', 'html')
+    app.connect('html-page-context', add_bing_meta)
